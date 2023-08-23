@@ -95,10 +95,38 @@ Sheet.filterBW = (bw_flag, result) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
-            return;
+            return;important_notes
         }
 
         console.log("Search results: ", res);
+        result(null, res);
+    });
+}
+
+Sheet.updateById = (id, sheet, result) => {
+    var query = "UPDATE daily SET firstname = ?, lastname = ?, date = ?, edaravone = ?, edaravone_comments = ?, edaravone_change = ?, \
+    bipap_nighttime = ?, bipap_nighttime_hours = ?, bipap_daytime = ?, bipap_daytime_hours = ?, \
+    bipap_comments = ?, sleep = ?, bowel_movement = ?, bowel_movement_comments = ?, urine_output = ?, \
+    urine_morning = ?, urine_daily_volume = ?, urine_comments = ?, medication_rx_change = ?, \
+    medication_routine_change = ?, morning_shake_via_pump = ?, gtube_other_comments = ?, \
+    dinner_oral_feed_comments = ?, pain_discomfort = ?, pain_discomfort_source = ?, pain_discomfort_comments = ?, \
+    suction_machine = ?, aoc_followup_comments = ?, important_notes = ? WHERE id = ?";
+
+    sql.query(query, [sheet.firstname, sheet.lastname, sheet.date, sheet.edaravone, sheet.edaravone_comments, sheet.edaravone_change, 
+        sheet.bipap_nighttime, sheet.bipap_nighttime_hours, sheet.bipap_daytime, sheet.bipap_daytime_hours, 
+        sheet.bipap_comments, sheet.sleep, sheet.bowel_movement, sheet.bowel_movement_comments, sheet.urine_output, 
+        sheet.urine_morning, sheet.urine_daily_volume, sheet.urine_comments, sheet.medication_rx_change, 
+        sheet.medication_routine_change, sheet.morning_shake_via_pump, sheet.gtube_other_comments, 
+        sheet.dinner_oral_feed_comments, sheet.pain_discomfort, sheet.pain_discomfort_source, sheet.pain_discomfort_comments, 
+        sheet.suction_machine, sheet.aoc_followup_comments, sheet.important_notes, id],
+    (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log("Updated sheet with id ", id);
         result(null, res);
     });
 }
