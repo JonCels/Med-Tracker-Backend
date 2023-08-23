@@ -1,24 +1,24 @@
 module.exports = app => {
-    const sheets = require("../controllers/tutorial.controller.js");
+    const sheets = require("../controllers/controller.js");
 
     var router = require("express").Router();
 
     //Create a new Sheet
-    router.post("/", sheets.create);
+    router.post("/", sheets.createSheet);
 
-    router.get("/", sheets.getAll);
+    router.get("/", sheets.findAll);
 
-    router.get("/:date", sheets.getByDate);
+    router.get("/date", sheets.findByDate);
 
-    router.get("/:comments", sheets.getByComments);
+    router.get("/comments", sheets.findByComments);
 
-    router.get("/:BW", sheets.getByBW);
+    router.get("/BW", sheets.findByBW);
 
-    router.put("/:id", sheets.updateById);
+    router.put("/:id", sheets.updateWithId);
 
-    router.delete("/:id", sheets.deleteById);
+    router.delete("/:id", sheets.deleteWithId);
 
-    router.delete("/:date", sheets.deleteByDate);
+    router.delete("/:date", sheets.deleteWithDate);
 
-    app.use('/api/tutorials', router);
+    app.use('/api/sheets', router);
 };

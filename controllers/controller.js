@@ -36,7 +36,8 @@ exports.createSheet = (req, res) => {
         pain_discomfort_comments: req.body.pain_discomfort_comments, 
         suction_machine: req.body.suction_machine, 
         aoc_followup_comments: req.body.aoc_followup_comments, 
-        important_notes: req.body.important_notes
+        important_notes: req.body.important_notes,
+        combined_comments: req.body.combined_comments
     });
 
     Sheet.create(sheet, (err, data) => {
@@ -66,7 +67,7 @@ exports.findAll = (req, res) => {
 
 exports.findByDate = (req, res) => {
     const date = req.query.date;
-    Sheet.getAll(date, (err, data) => {
+    Sheet.getByDate(date, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
@@ -87,7 +88,7 @@ exports.findByDate = (req, res) => {
 
 exports.findByComments = (req, res) => {
     const searchInput = req.query.combined_comments;
-    Sheet.getAll(searchInput, (err, data) => {
+    Sheet.getByComments(searchInput, (err, data) => {
         if (err) {
             res.status(500).send({
                 message: err.message || "Error occurred with comment search."
@@ -101,7 +102,7 @@ exports.findByComments = (req, res) => {
 
 exports.findByBW = (req, res) => {
     const BW = req.query.bowel_movement;
-    Sheet.getAll(BW, (err, data) => {
+    Sheet.getByBW(BW, (err, data) => {
         if (err) {
             res.status(500).send({
                 message: err.message || "Error occurred with BW filter."

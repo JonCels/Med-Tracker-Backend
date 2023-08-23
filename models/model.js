@@ -31,11 +31,12 @@ const Sheet = function(sheet) {
     this.suction_machine = sheet.suction_machine;
     this.aoc_followup_comments = sheet.aoc_followup_comments;
     this.important_notes = sheet.important_notes;
-    this.combined_comments = sheet.edaravone_comments.concatenate(sheet.bipap_comments, 
-        sheet.sleep, sheet.bowel_movement_comments, sheet.urine_comments, sheet.medication_rx_change, 
-        sheet.medication_routine_change, sheet.gtube_other_comments, sheet.dinner_oral_feed_comments, 
-        sheet.pain_discomfort_source, sheet.pain_discomfort_comments, sheet.aoc_followup_comments, 
-        sheet.important_notes);
+    this.combined_comments = sheet.edaravone_comments + ' ' + sheet.bipap_comments + ' ' 
+        + sheet.sleep + ' ' + sheet.bowel_movement_comments + ' ' + sheet.urine_comments + ' ' 
+        + sheet.medication_rx_change + ' ' + sheet.medication_routine_change + ' ' 
+        + sheet.gtube_other_comments + ' ' + sheet.dinner_oral_feed_comments + ' ' 
+        + sheet.pain_discomfort_source + ' ' + sheet.pain_discomfort_comments + ' ' 
+        + sheet.aoc_followup_comments + ' ' + sheet.important_notes;
 };
 
 Sheet.create = (newSheet, result) => {
@@ -46,7 +47,7 @@ Sheet.create = (newSheet, result) => {
             return;
         }
 
-        console.log("created daily tracker sheet: ", { id: res.insertId, ...newSheet });
+        console.log("Created daily tracker sheet: ", { id: res.insertId, ...newSheet });
         result(null, { id: res.insertId, ...newSheet });
     });
 };
@@ -78,7 +79,7 @@ Sheet.getByDate = (date, result) => {
 }
 
 Sheet.getByComments = (searchInput, result) => {
-    sql.query(`SELECT * FROM daily WHERE combined_comments LIKE '%${searchInput}'`, (err, res) => {
+    sql.query(`SELECT * FROM daily WHERE combined_comments LIKE '%${searchInput}%'`, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
