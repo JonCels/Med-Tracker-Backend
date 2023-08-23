@@ -18,7 +18,7 @@ module.exports = app => {
 
     router.delete("/:id", sheets.deleteWithId);
 
-    router.delete("/:date", sheets.deleteWithDate);
+    router.delete("/date", sheets.deleteWithDate);
 
     app.use('/api/sheets', router);
 };

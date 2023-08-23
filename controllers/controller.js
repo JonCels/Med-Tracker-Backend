@@ -166,7 +166,7 @@ exports.deleteWithId = (req, res) => {
 
 exports.deleteWithDate = (req, res) => {
     const date = req.query.date;
-    Sheet.deleteById(date, (err, data) => {
+    Sheet.deleteByDate(date, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
