@@ -64,7 +64,7 @@ Sheet.getAll = (result) => {
     });
 };
 
-Sheet.searchDate = (date, result) => {
+Sheet.getByDate = (date, result) => {
     sql.query("SELECT * FROM daily WHERE date = ?", date, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -77,7 +77,7 @@ Sheet.searchDate = (date, result) => {
     });
 }
 
-Sheet.searchComments = (searchInput, result) => {
+Sheet.getByComments = (searchInput, result) => {
     sql.query(`SELECT * FROM daily WHERE combined_comments LIKE '%${searchInput}'`, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -90,7 +90,7 @@ Sheet.searchComments = (searchInput, result) => {
     });
 }
 
-Sheet.filterBW = (bw_flag, result) => {
+Sheet.getByBW = (bw_flag, result) => {
     sql.query("SELECT * FROM daily WHERE bowel_movement = ?", bw_flag, (err, res) => {
         if (err) {
             console.log("error: ", err);
@@ -152,7 +152,7 @@ Sheet.deleteByDate = (date, result) => {
             return;
         }
 
-        console.log("Deleted sheet with id ", id);
+        console.log("Deleted sheet with date ", date);
         result(null, res);
     });
 }

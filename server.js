@@ -16,7 +16,7 @@ app.get("/", (req, res) => { //Simple get route
     });
 });
 
-//require("./routes/routes.js")(app);
+require("./routes/routes.js")(app);
 
 const PORT = process.env.PORT || 8081;
 app.listen(PORT, () => { //Listen on port 8081
