@@ -2,8 +2,6 @@ const sql = require("./db.js");
 
 //Constructor for a sheet
 const Sheet = function(sheet) {
-    console.log("Sheet!");
-    console.log(sheet);
     this.firstname = sheet.firstname;
     this.lastname = sheet.lastname;
     this.date = sheet.date;
@@ -56,7 +54,7 @@ Sheet.create = (newSheet, result) => {
 };
 
 Sheet.getAll = (result) => {
-    sql.query("SELECT * FROM daily", (err, res) => {
+    sql.query("SELECT * FROM daily ORDER BY sortable_date DESC", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
