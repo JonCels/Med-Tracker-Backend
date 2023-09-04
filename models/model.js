@@ -2,9 +2,12 @@ const sql = require("./db.js");
 
 //Constructor for a sheet
 const Sheet = function(sheet) {
+    console.log("Sheet!");
+    console.log(sheet);
     this.firstname = sheet.firstname;
     this.lastname = sheet.lastname;
     this.date = sheet.date;
+    this.sortable_date = sheet.sortable_date;
     this.edaravone = sheet.edaravone;
     this.edaravone_comments = sheet.edaravone_comments;
     this.edaravone_change = sheet.edaravone_change;
@@ -105,7 +108,7 @@ Sheet.getByBW = (bw_flag, result) => {
 }
 
 Sheet.updateById = (id, sheet, result) => {
-    var query = "UPDATE daily SET firstname = ?, lastname = ?, date = ?, edaravone = ?, edaravone_comments = ?, edaravone_change = ?, \
+    var query = "UPDATE daily SET firstname = ?, lastname = ?, date = ?, sortable_date = ?, edaravone = ?, edaravone_comments = ?, edaravone_change = ?, \
     bipap_nighttime = ?, bipap_nighttime_hours = ?, bipap_daytime = ?, bipap_daytime_hours = ?, \
     bipap_comments = ?, sleep = ?, bowel_movement = ?, bowel_movement_comments = ?, urine_output = ?, \
     urine_morning = ?, urine_daily_volume = ?, urine_comments = ?, medication_rx_change = ?, \
@@ -113,7 +116,7 @@ Sheet.updateById = (id, sheet, result) => {
     dinner_oral_feed_comments = ?, pain_discomfort = ?, pain_discomfort_source = ?, pain_discomfort_comments = ?, \
     suction_machine = ?, aoc_followup_comments = ?, important_notes = ? WHERE id = ?";
 
-    sql.query(query, [sheet.firstname, sheet.lastname, sheet.date, sheet.edaravone, sheet.edaravone_comments, sheet.edaravone_change, 
+    sql.query(query, [sheet.firstname, sheet.lastname, sheet.date, sheet.sortable_date, sheet.edaravone, sheet.edaravone_comments, sheet.edaravone_change, 
         sheet.bipap_nighttime, sheet.bipap_nighttime_hours, sheet.bipap_daytime, sheet.bipap_daytime_hours, 
         sheet.bipap_comments, sheet.sleep, sheet.bowel_movement, sheet.bowel_movement_comments, sheet.urine_output, 
         sheet.urine_morning, sheet.urine_daily_volume, sheet.urine_comments, sheet.medication_rx_change, 

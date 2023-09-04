@@ -11,6 +11,7 @@ exports.createSheet = (req, res) => {
         firstname: req.body.firstname, 
         lastname: req.body.lastname, 
         date: req.body.date, 
+        sortable_date: req.body.sortable_date,
         edaravone: req.body.edaravone, 
         edaravone_comments: req.body.edaravone_comments, 
         edaravone_change: req.body.edaravone_change, 
@@ -60,6 +61,7 @@ exports.findAll = (req, res) => {
             });
         }
         else {
+            console.log(data);
             res.send(data);
         }
     });
@@ -81,6 +83,7 @@ exports.findByDate = (req, res) => {
             }
         }
         else {
+            console.log(data);
             res.send(data);
         }
     });
