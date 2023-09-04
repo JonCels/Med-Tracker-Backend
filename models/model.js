@@ -66,7 +66,7 @@ Sheet.getAll = (result) => {
 };
 
 Sheet.getByDate = (date, result) => {
-    sql.query("SELECT * FROM daily WHERE date = ?", date, (err, res) => {
+    sql.query("SELECT * FROM daily WHERE date LIKE ?", date, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -146,7 +146,7 @@ Sheet.deleteById = (id, result) => {
 }
 
 Sheet.deleteByDate = (date, result) => {
-    sql.query("DELETE FROM daily WHERE date = ?", date, (err, res) => {
+    sql.query("DELETE FROM daily WHERE date LIKE ?", date, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
