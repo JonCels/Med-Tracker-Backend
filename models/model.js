@@ -112,7 +112,7 @@ Sheet.updateById = (id, sheet, result) => {
     urine_morning = ?, urine_daily_volume = ?, urine_comments = ?, medication_rx_change = ?, \
     medication_routine_change = ?, morning_shake_via_pump = ?, gtube_other_comments = ?, \
     dinner_oral_feed_comments = ?, pain_discomfort = ?, pain_discomfort_source = ?, pain_discomfort_comments = ?, \
-    suction_machine = ?, aoc_followup_comments = ?, important_notes = ? WHERE id = ?";
+    suction_machine = ?, aoc_followup_comments = ?, important_notes = ?, combined_comments = ? WHERE id = ?";
 
     sql.query(query, [sheet.firstname, sheet.lastname, sheet.date, sheet.sortable_date, sheet.edaravone, sheet.edaravone_comments, sheet.edaravone_change, 
         sheet.bipap_nighttime, sheet.bipap_nighttime_hours, sheet.bipap_daytime, sheet.bipap_daytime_hours, 
@@ -120,7 +120,7 @@ Sheet.updateById = (id, sheet, result) => {
         sheet.urine_morning, sheet.urine_daily_volume, sheet.urine_comments, sheet.medication_rx_change, 
         sheet.medication_routine_change, sheet.morning_shake_via_pump, sheet.gtube_other_comments, 
         sheet.dinner_oral_feed_comments, sheet.pain_discomfort, sheet.pain_discomfort_source, sheet.pain_discomfort_comments, 
-        sheet.suction_machine, sheet.aoc_followup_comments, sheet.important_notes, id],
+        sheet.suction_machine, sheet.aoc_followup_comments, sheet.important_notes, sheet.combined_comments, id],
     (err, res) => {
         if (err) {
             console.log("error: ", err);
