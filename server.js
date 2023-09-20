@@ -3,7 +3,7 @@ const cors = require('cors'); //middleware for express
 const app = express();
 
 var corsOptions = {
-    origin: "https://vercel.com/joncels/med-tracker-frontend"
+    origin: "https://med-tracker-frontend.vercel.app"
 };
 
 app.use(cors(corsOptions));
